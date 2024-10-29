@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { links } from './config'
 
 export function Navbar() {
@@ -8,7 +8,16 @@ export function Navbar() {
       drop-shadow-mainshadow
     `}
     >
-      {links.map(link => <Link className="flex h-20 items-center justify-center text-center" to={link.path}>{link.name}</Link>)}
+      {links.map(link => (
+        <NavLink
+          className={({ isActive }) => isActive
+            ? `flex h-20 items-center justify-center border bg-blue-200 text-center`
+            : `flex h-20 items-center justify-center border text-center`}
+          to={link.path}
+        >
+          {link.name}
+        </NavLink>
+      ))}
     </nav>
   )
 }

@@ -1,7 +1,7 @@
 export function MinistryMeeting() {
   return (
     <div>
-      1
+      5
     </div>
   )
 }
