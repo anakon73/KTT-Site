@@ -17,7 +17,7 @@ export function DefaultLayout() {
         <div className="flex w-full gap-x-5">
           <div><Navbar /></div>
           <div className={`
-            h-[600px] w-[830px] overflow-hidden rounded-2xl bg-violet-300 drop-shadow-mainshadow
+            h-[600px] w-[830px] overflow-hidden rounded-2xl bg-blue-200 drop-shadow-mainshadow
           `}
           >
             <Outlet />

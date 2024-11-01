@@ -1,40 +1,40 @@
-import { ProgramText } from '../../shared/ui/ProgtamText'
-
 export function MeetingProgram() {
   return (
-    <div className="flex flex-col items-center">
-      <ProgramText>Встреча собрания 19 Октября в 10:00 (Třinec)</ProgramText>
-      <div className="flex">
-        <div>
-          <ProgramText>Председатель встречи</ProgramText>
-          <ProgramText>Пляшко Богдан</ProgramText>
-        </div>
-        <div>
-          <ProgramText>Докладчик</ProgramText>
-          <ProgramText>Кошелев Владимир</ProgramText>
-        </div>
+    <div className="mx-10 my-10 rounded-2xl border border-gray-800 text-center">
+      <div className="p-2 text-lg font-bold text-blue-600">
+        Встреча собрания 19 Октября в 10:00 (Třinec)
       </div>
-      <div>
-        <ProgramText>Публичная реч</ProgramText>
-        <ProgramText>Долго ли еще стонать человечеству</ProgramText>
-      </div>
-      <div className="flex">
-        <div>
-          <ProgramText>Ведущий С.Б.</ProgramText>
-          <ProgramText>Данов Александр</ProgramText>
+
+      <div className="grid grid-cols-4 divide-x divide-y divide-gray-800">
+        <div className="col-span-1 bg-gray-100 p-2 font-bold">Председатель встречи</div>
+        <div className="col-span-1 flex items-center justify-center bg-gray-100 p-2 font-bold">
+          Докладчик
         </div>
-        <div>
-          <ProgramText>Чтец</ProgramText>
-          <ProgramText>Марек Гейда</ProgramText>
+        <div className="col-span-2 flex items-center justify-center bg-gray-100 p-2 font-bold">
+          Публичная речь
         </div>
-        <div>
-          <ProgramText>Заключительная молитва</ProgramText>
-          <ProgramText>Кошелев Владимир</ProgramText>
+
+        <div className="col-span-1 p-2">Пляшко Богдан</div>
+        <div className="col-span-1 p-2">Кошелев Владимир</div>
+        <div className="col-span-2 p-2 font-bold text-purple-600">
+          Долго ли еще стонать Человечеству?
         </div>
-      </div>
-      <div>
-        <ProgramText>Впс</ProgramText>
-        <ProgramText>Марек Гейда</ProgramText>
+
+        <div className="col-span-1 flex items-center justify-center p-2 text-blue-500">
+          Ведущий С.Б.
+        </div>
+        <div className="col-span-1 flex items-center justify-center p-2">Чтец</div>
+        <div className="col-span-1 p-2">Заключительная молитва</div>
+        <div className="col-span-1 p-2 text-sm">
+          ВПС - зал + зум в
+          <br />
+          11:50
+        </div>
+
+        <div className="col-span-1 p-2">Данов Александр</div>
+        <div className="col-span-1 p-2">Марк Гейда</div>
+        <div className="col-span-1 p-2">Кошелев Владимир</div>
+        <div className="col-span-1 p-2">Марк Гейда</div>
       </div>
     </div>
   )
