@@ -11,6 +11,7 @@ export function Navbar() {
     >
       {links.map(link => (
         <NavLink
+          key={link.name}
           className={({ isActive }) => isActive
             ? `w-full rounded-lg border bg-blue-200 p-2 text-center text-sm shadow-innershadow`
             : `w-full rounded-md border bg-indigo-200 p-2 text-center text-sm shadow-innershadow`}
