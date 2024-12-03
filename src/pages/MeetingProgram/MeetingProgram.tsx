@@ -5,11 +5,13 @@ export function MeetingProgram() {
         Встреча собрания 19 Октября в 10:00 (Třinec)
       </div>
 
-      <div className={`
-        grid grid-cols-4 divide-x divide-y divide-gray-800 text-sm
+      <div className={
+        `
+          grid grid-cols-4 divide-x divide-y divide-gray-800 text-xs
 
-        lg:text-base
-      `}
+          md:text-base
+        `
+      }
       >
         <div className="col-span-1 bg-gray-100 p-2 font-bold">Председатель встречи</div>
         <div className="col-span-1 flex items-center justify-center bg-gray-100 p-2 font-bold">
