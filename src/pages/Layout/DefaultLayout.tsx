@@ -1,12 +1,11 @@
-// import { LogIn } from 'lucide-react'
 import { Outlet } from 'react-router-dom'
 import { Navbar } from '../../shared/ui/Navbar'
 
 export function DefaultLayout() {
   return (
-    <div className="flex h-full min-h-screen justify-center bg-sky-100 font-montserrat">
+    <div className="flex min-h-screen justify-center bg-sky-100 font-montserrat">
       <div className={`
-        relative mt-10 w-full max-w-[1080px] gap-y-8 pb-8
+        relative mt-10 w-full max-w-[1080px] gap-y-8
 
         lg:mx-20
 
@@ -27,13 +26,3 @@ export function DefaultLayout() {
 
   )
 }
-
-/* <header className={`
-          mb-5 flex gap-5 rounded-2xl bg-blue-100 px-5 py-5 text-sm drop-shadow-mainshadow
-
-          md:absolute md:-top-5 md:right-0 md:mb-0 md:-translate-y-full
-        `}
-        >
-          <LogIn className="size-5" />
-          <p>Name</p>
-        </header> */
