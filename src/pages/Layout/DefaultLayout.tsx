@@ -4,9 +4,9 @@ import { Navbar } from '../../shared/ui/Navbar'
 
 export function DefaultLayout() {
   return (
-    <div className="flex min-h-screen justify-center bg-sky-100 font-montserrat">
+    <div className="flex h-full min-h-screen justify-center bg-sky-100 font-montserrat">
       <div className={`
-        relative my-10 w-full max-w-[1080px] gap-y-8
+        relative mt-10 w-full max-w-[1080px] gap-y-8 pb-8
 
         lg:mx-20
 

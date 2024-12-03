@@ -1,3 +1,5 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 export function MeetingProgram() {
   return (
   // <div className="mx-10 my-10 rounded-2xl border border-gray-800 text-center">
@@ -123,10 +125,15 @@ export function MeetingProgram() {
       sm:mx-10 sm:my-5
     `}
     >
-      <div className="flex justify-center text-center">
-        Встреча собрания
-        <br />
-        19 Октября в 10:00 (Třinec)
+      <div className="flex flex-col justify-center text-center">
+        <div>
+          Встреча собрания
+        </div>
+        <div className="flex justify-center">
+          <button><ChevronLeft className="size-5" /></button>
+          <p>19 Октября в 10:00 (Třinec)</p>
+          <button><ChevronRight className="size-5" /></button>
+        </div>
       </div>
 
       <div className="flex justify-between rounded-xl bg-blue-100 px-4 py-2 drop-shadow-mainshadow">
@@ -135,7 +142,7 @@ export function MeetingProgram() {
       </div>
 
       <div className={`
-        flex justify-between rounded-xl bg-blue-100 px-4 py-2 text-center drop-shadow-mainshadow
+        flex justify-between rounded-xl bg-blue-100 py-1 text-center drop-shadow-mainshadow
 
         md:bg-transparent
       `}
