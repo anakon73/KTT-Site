@@ -7,9 +7,9 @@ export const links: {
     | 'announcements'
     | 'ministry-meeting'
 }[] = [
-  { name: 'Программа на этой неделе', path: '/' },
-  { name: 'Ответственные за обслуживание собрания', path: 'meeting-service' },
+  { name: 'Программа', path: '/' },
+  { name: 'Обслуживающие', path: 'meeting-service' },
   // { name: 'Участки', path: 'areas' },
   // { name: 'Объявления', path: 'announcements' },
-  { name: 'Встречи для проповеди', path: 'ministry-meeting' },
+  { name: 'ВПС', path: 'ministry-meeting' },
 ]

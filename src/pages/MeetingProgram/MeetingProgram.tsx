@@ -117,20 +117,44 @@ export function MeetingProgram() {
   //     <div className="col-span-1 p-2">Марк Гейда</div>
   //   </div>
 
-    <div className="mx-10 my-5 flex flex-col gap-y-6">
-      <div className="flex justify-center">Встреча собрания 19 Октября в 10:00 (Třinec)</div>
+    <div className={`
+      mx-3 my-1 flex flex-col gap-y-6
+
+      sm:mx-10 sm:my-5
+    `}
+    >
+      <div className="flex justify-center text-center">
+        Встреча собрания
+        <br />
+        19 Октября в 10:00 (Třinec)
+      </div>
 
       <div className="flex justify-between rounded-xl bg-blue-100 p-2 drop-shadow-mainshadow">
         <p>Председатель встречи</p>
         <p>Пляшко Богдан</p>
       </div>
 
-      <div className="flex justify-between rounded-xl p-2 text-center drop-shadow-mainshadow">
-        <div className="rounded-xl bg-blue-100 p-2 drop-shadow-mainshadow">
+      <div className={`
+        flex justify-between rounded-xl bg-blue-100 p-2 text-center drop-shadow-mainshadow
+
+        md:bg-transparent
+      `}
+      >
+        <div className={`
+          rounded-xl p-2 drop-shadow-mainshadow
+
+          md:bg-blue-100
+        `}
+        >
           <p>Докладчик</p>
           <p className="mt-2 font-semibold italic">Кошелев Владимир</p>
         </div>
-        <div className="rounded-xl bg-blue-100 p-2 drop-shadow-mainshadow">
+        <div className={`
+          rounded-xl p-2 drop-shadow-mainshadow
+
+          md:bg-blue-100
+        `}
+        >
           <p>Публичная речь:</p>
           <p className="mt-2 font-bold text-slate-900">Долго ли еще стонать Человечеству?</p>
         </div>

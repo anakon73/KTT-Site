@@ -1,34 +1,27 @@
+import { Menu } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { links } from './config'
 
 export function Navbar() {
   return (
-    <nav className={`
-      flex w-full max-w-[350px] flex-col overflow-hidden rounded-2xl text-sm drop-shadow-mainshadow
-
-      md:text-base
+    <div className={`
+      flex w-full max-w-[800px] items-center justify-between overflow-hidden rounded-2xl text-sm
+      drop-shadow-mainshadow
     `}
     >
       {links.map(link => (
         <NavLink
           className={({ isActive }) => isActive
-            ? `
-              flex h-20 items-center justify-center rounded-lg border bg-blue-200 p-2 text-center
-              text-sm shadow-innershadow
-
-              md:mr-7 md:text-base
-            `
-            : `
-              flex h-20 items-center justify-center rounded-md border bg-indigo-200 p-2 text-center
-              text-sm shadow-innershadow
-
-              md:mr-10 md:text-base
-            `}
+            ? `w-full rounded-lg border bg-blue-200 p-2 text-center text-sm shadow-innershadow`
+            : `w-full rounded-md border bg-indigo-200 p-2 text-center text-sm shadow-innershadow`}
           to={link.path}
         >
           {link.name}
         </NavLink>
       ))}
-    </nav>
+      <button className="max-w-44 px-3">
+        <Menu />
+      </button>
+    </div>
   )
 }
