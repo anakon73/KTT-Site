@@ -14,13 +14,13 @@ export function Navbar() {
           className={({ isActive }) => isActive
             ? `
               flex h-20 items-center justify-center rounded-lg border bg-blue-200 p-2 text-center
-              text-sm
+              text-sm shadow-innershadow
 
-              md:mr-5 md:text-base
+              md:mr-7 md:text-base
             `
             : `
-              flex h-20 items-center justify-center rounded-md border bg-slate-300 p-2 text-center
-              text-sm
+              flex h-20 items-center justify-center rounded-md border bg-indigo-200 p-2 text-center
+              text-sm shadow-innershadow
 
               md:mr-10 md:text-base
             `}
