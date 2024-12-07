@@ -19,7 +19,7 @@ export function MeetingProgram() {
         </div>
       </div>
 
-      <div className="flex justify-between rounded-xl bg-blue-100 px-4 py-2 drop-shadow-mainshadow">
+      <div className="flex justify-between rounded-xl bg-white px-4 py-2 drop-shadow-mainshadow">
         <p>Председатель встречи</p>
         <p className="font-semibold">Пляшко Богдан</p>
       </div>
@@ -51,7 +51,7 @@ export function MeetingProgram() {
       </div>
 
       <div className={`
-        flex justify-between rounded-xl bg-blue-100 px-4 py-3 text-center drop-shadow-mainshadow
+        flex justify-between rounded-xl bg-white px-4 py-3 text-center drop-shadow-mainshadow
       `}
       >
         <div>
@@ -64,7 +64,7 @@ export function MeetingProgram() {
         </div>
       </div>
 
-      <div className="flex justify-between rounded-xl bg-blue-100 px-4 py-2 drop-shadow-mainshadow">
+      <div className="flex justify-between rounded-xl bg-white px-4 py-2 drop-shadow-mainshadow">
         <p>Заключительная молитва</p>
         <p className="font-semibold">Кошелев Владимир</p>
       </div>

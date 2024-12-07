@@ -12,24 +12,24 @@ export function MeetingService() {
         </div>
       </div>
       <div className={`
-        mx-3 mb-3 flex flex-col gap-3
+        mx-3 mb-3 mt-3 flex flex-col gap-3
 
         sm:m-7
       `}
       >
-        <div className="flex justify-between rounded-xl bg-blue-100 drop-shadow-mainshadow">
+        <div className="flex justify-between rounded-xl bg-white drop-shadow-mainshadow">
           <p className="px-3 py-1">Сцена</p>
           <p className="px-3 py-1 text-right">Мостовой Максим</p>
         </div>
-        <div className="flex justify-between rounded-xl bg-blue-100 drop-shadow-mainshadow">
+        <div className="flex justify-between rounded-xl bg-white drop-shadow-mainshadow">
           <p className="px-3 py-1">Микрофоны</p>
           <p className="px-3 py-1 text-right">Данов Илья & Шилюк Арсений</p>
         </div>
-        <div className="flex justify-between rounded-xl bg-blue-100 drop-shadow-mainshadow">
+        <div className="flex justify-between rounded-xl bg-white drop-shadow-mainshadow">
           <p className="px-3 py-1">Озвучивание + зум</p>
           <p className="px-3 py-1 text-right">Братья с собрания Тринец</p>
         </div>
-        <div className="flex justify-between rounded-xl bg-blue-100 drop-shadow-mainshadow">
+        <div className="flex justify-between rounded-xl bg-white drop-shadow-mainshadow">
           <p className="px-3 py-1">Распорядители</p>
           <p className="px-3 py-1 text-right">Брат с собрания Тринец & Мостовой Максим</p>
         </div>
