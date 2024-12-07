@@ -5,11 +5,13 @@ export function DefaultLayout() {
   return (
     <div className="flex min-h-screen justify-center bg-sky-100 font-montserrat">
       <div className={`
-        relative mt-10 w-full max-w-[1080px] gap-y-8
+        relative mt-4 w-full max-w-[1080px] gap-y-8
 
         lg:mx-20
 
         md:mx-10
+
+        sm:mt-10
       `}
       >
         <div className="flex w-full flex-col items-center justify-center gap-y-5">

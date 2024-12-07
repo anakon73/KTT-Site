@@ -25,7 +25,7 @@ export function MeetingProgram() {
       </div>
 
       <div className={`
-        flex justify-between rounded-xl bg-blue-100 py-1 text-center drop-shadow-mainshadow
+        flex justify-between rounded-xl bg-white py-1 text-center drop-shadow-mainshadow
 
         md:bg-transparent
       `}
@@ -33,7 +33,7 @@ export function MeetingProgram() {
         <div className={`
           rounded-xl px-4 py-2 drop-shadow-mainshadow
 
-          md:bg-blue-100
+          md:bg-white
         `}
         >
           <p>Докладчик</p>
@@ -42,7 +42,7 @@ export function MeetingProgram() {
         <div className={`
           rounded-xl px-4 py-2 drop-shadow-mainshadow
 
-          md:bg-blue-100
+          md:bg-white
         `}
         >
           <p>Публичная речь:</p>
@@ -79,7 +79,6 @@ export function MeetingProgram() {
           Марк Гейда
         </p>
       </div>
-
     </div>
   )
 }
