@@ -1,8 +1,8 @@
 {
   "name": "ktt-site",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.2",
+    "@radix-ui/themes": "^3.1.6",
     "eslint-plugin-readable-tailwind": "^1.8.1",
     "fsd": "^0.13.1",
     "lucide-react": "^0.454.0",
