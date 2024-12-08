@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-context": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/themes": "^3.1.6",
     "eslint-plugin-readable-tailwind": "^1.8.1",
