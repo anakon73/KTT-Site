@@ -9,6 +9,9 @@
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "allowImportingTsExtensions": true,
 
     /* Linting */
