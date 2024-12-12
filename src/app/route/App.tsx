@@ -1,3 +1,4 @@
+import { AdminPanel } from '@/pages/Admin'
 import { Route, Routes } from 'react-router-dom'
 import { Announcements } from '../../pages/Announcements/Announcements'
 import { Areas } from '../../pages/Areas'
@@ -10,9 +11,11 @@ import { MinistryMeeting } from '../../pages/MinistryMeeting'
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<AuthLayout />} />
+      <Route path="/login" element={<AuthLayout />}>
+      </Route>
       <Route path="/" element={<DefaultLayout />}>
         <Route index element={<MeetingProgram />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="meeting-service" element={<MeetingService />} />
         <Route path="areas" element={<Areas />} />
         <Route path="announcements" element={<Announcements />} />

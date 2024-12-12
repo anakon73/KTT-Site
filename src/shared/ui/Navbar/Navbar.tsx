@@ -1,6 +1,6 @@
 import { DropdownMenu } from '@radix-ui/themes'
 import { Menu } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { links } from './config'
 import '@radix-ui/themes/styles.css'
 
@@ -26,7 +26,9 @@ export function Navbar() {
       ))}
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <div className="px-1">
+          <div
+            className="px-1"
+          >
             <Menu className="size-8" />
           </div>
         </DropdownMenu.Trigger>
@@ -39,7 +41,14 @@ export function Navbar() {
             md:mx-4
           `}
         >
-          <DropdownMenu.Item>Войти</DropdownMenu.Item>
+          <DropdownMenu.Item>
+            <Link
+              to="admin"
+
+            >
+              Войти
+            </Link>
+          </DropdownMenu.Item>
           <DropdownMenu.Separator />
           <DropdownMenu.Item color="red">
             Выйти

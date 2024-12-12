@@ -11,13 +11,16 @@ export function DefaultLayout() {
 
         md:mx-10
 
-        sm:mt-10
+        sm:my-10
       `}
       >
         <div className="flex w-full flex-col items-center justify-center gap-y-5">
           <Navbar />
           <div className={`
-            w-full max-w-[800px] overflow-hidden rounded-2xl bg-blue-200 drop-shadow-mainshadow
+            h-screen w-full max-w-[800px] overflow-hidden rounded-2xl bg-blue-200
+            drop-shadow-mainshadow
+
+            sm:h-auto
           `}
           >
             <Outlet />
@@ -25,6 +28,5 @@ export function DefaultLayout() {
         </div>
       </div>
     </div>
-
   )
 }
