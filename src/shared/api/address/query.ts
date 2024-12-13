@@ -1,10 +1,10 @@
-import { queryOptions, useQuery } from '@tanstack/react-query'
-import { type AddressByIdParams, getAddressById, getAddresses } from './api'
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query'
+import { type AddressByIdParams, createAddress, getAddressById, getAddresses } from './api'
 
 const entity = 'address'
 const Scopes = { All: 'all', ById: 'by-id' } as const
 
-const keys = {
+export const keys = {
   getAddresses: (
   ) => [{ entity, scope: Scopes.All }],
   byId: (
@@ -32,4 +32,11 @@ export function useAddressesByIdQuery(params: AddressByIdParams) {
 
 export function useAddressById(params: AddressByIdParams) {
   return useQuery(useAddressesByIdQuery(params))
+}
+
+export function useCreateAddress() {
+  return useMutation({
+    mutationFn: createAddress,
+
+  })
 }

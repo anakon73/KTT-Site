@@ -14,6 +14,11 @@ const endpoints = {
     method: 'get',
     schema: AddressSchema,
   },
+  create: {
+    url: '/api/addresses',
+    method: 'post',
+    schema: AddressSchema,
+  },
 
 } satisfies ApiEndpointsAndSchemas
 
@@ -30,5 +35,16 @@ export async function getAddressById({ id }: AddressByIdParams) {
   const { url, method, schema } = endpoints.byId
   const data = await client[method](url({ id }), schema)
 
+  return normalizeAddress(data)
+}
+
+export interface CreateAddressParams {
+  address: string
+  address_url: string
+}
+
+export async function createAddress({ address, address_url }: CreateAddressParams) {
+  const { url, method, schema } = endpoints.create
+  const data = await client[method](url, { address, address_url }, schema)
   return normalizeAddress(data)
 }
