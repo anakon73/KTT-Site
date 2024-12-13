@@ -1,6 +1,11 @@
+import { useMeetings } from '@/shared/api/meetings/query'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useEffect } from 'react'
 
 export function MeetingProgram() {
+  const { data } = useMeetings()
+
+  useEffect(() => console.log(data), [data])
   return (
     <div className={`
       mx-3 my-1 flex flex-col gap-y-6 pb-8 font-medium
@@ -14,6 +19,7 @@ export function MeetingProgram() {
         </div>
         <div className="flex justify-center">
           <button><ChevronLeft className="size-5" /></button>
+          {}
           <p>19 Октября в 10:00 (Třinec)</p>
           <button><ChevronRight className="size-5" /></button>
         </div>

@@ -5,7 +5,7 @@ import { MeetingSchema } from './types'
 
 const endpoints = {
   getMeetings: {
-    url: '/api/meeting',
+    url: '/api/meetings',
     method: 'get',
     schema: z.array(MeetingSchema),
   },

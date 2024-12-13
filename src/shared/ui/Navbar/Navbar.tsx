@@ -1,13 +1,14 @@
 import { DropdownMenu } from '@radix-ui/themes'
 import { Menu } from 'lucide-react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { KDialog } from '../dialog'
 import { links } from './config'
 import '@radix-ui/themes/styles.css'
 
 export function Navbar() {
   return (
     <div className={`
-      ml-2 flex w-full max-w-[800px] items-center justify-between overflow-hidden rounded-2xl
+      mx-2 flex w-full max-w-[800px] items-center justify-between overflow-hidden rounded-2xl
       text-sm drop-shadow-mainshadow
 
       md:ml-0
@@ -24,35 +25,23 @@ export function Navbar() {
           {link.name}
         </NavLink>
       ))}
+
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <div
-            className="px-1"
-          >
-            <Menu className="size-8" />
+          <div className="flex size-6 items-center justify-center">
+            <Menu />
           </div>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content
           variant="soft"
           side="right"
           className={`
-            drop-shadow-mainshadow
+            mr-2 drop-shadow-mainshadow
 
             md:mx-4
           `}
         >
-          <DropdownMenu.Item>
-            <Link
-              to="admin"
-
-            >
-              Войти
-            </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item color="red">
-            Выйти
-          </DropdownMenu.Item>
+          <KDialog />
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </div>
