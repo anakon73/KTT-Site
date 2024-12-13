@@ -1,1 +1,1 @@
-export { KDialog } from './KDialog'
+export { KDropdown } from './KDropdown'

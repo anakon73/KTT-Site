@@ -1,11 +1,10 @@
-import { DropdownMenu } from '@radix-ui/themes'
-import { Menu } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
-import { KDialog } from '../dialog'
+import { KDropdown } from '../dialog'
 import { links } from './config'
 import '@radix-ui/themes/styles.css'
 
 export function Navbar() {
+  // const isAuth = localStorage.getItem('isAuth') === 'true'
   return (
     <div className={`
       mx-2 flex w-full max-w-[800px] items-center justify-between overflow-hidden rounded-2xl
@@ -26,24 +25,7 @@ export function Navbar() {
         </NavLink>
       ))}
 
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
-          <div className="flex size-6 items-center justify-center">
-            <Menu />
-          </div>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content
-          variant="soft"
-          side="right"
-          className={`
-            mr-2 drop-shadow-mainshadow
-
-            md:mx-4
-          `}
-        >
-          <KDialog />
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
+      <KDropdown />
     </div>
   )
 }

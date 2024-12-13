@@ -1,29 +1,9 @@
 import { DataPicker } from '@/shared/ui/data-picker'
 import { KInput } from '@/shared/ui/input'
 import { lightTheme, Provider } from '@adobe/react-spectrum'
-import { useState } from 'react'
 
 export function AdminPanel() {
-  const [formData, setFormData] = useState({
-    chairman: '',
-    speaker: '',
-    publicTalk: '',
-    sbLeader: '',
-    reader: '',
-    closingPrayer: '',
-    wps: '',
-  })
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
   const handleSubmit = () => {
-    console.log('Submitted data:', formData)
     // Здесь будет запрос к бэкенду
   }
   return (
@@ -40,81 +20,39 @@ export function AdminPanel() {
 
       <div className="mb-4">
         <label htmlFor="chairman" className="block text-sm font-medium text-gray-700">Председатель встречи</label>
-        <KInput
-          id="chairman"
-          name="chairman"
-          value={formData.chairman}
-          onChange={handleChange}
-          className="mt-1"
-        />
+        <KInput />
       </div>
 
       <div className="mb-4">
         <label htmlFor="speaker" className="block text-sm font-medium text-gray-700">Докладчик</label>
-        <KInput
-          id="speaker"
-          name="speaker"
-          value={formData.speaker}
-          onChange={handleChange}
-          className="mt-1"
-        />
+        <KInput />
       </div>
 
       <div className="mb-4">
         <label htmlFor="publicTalk" className="block text-sm font-medium text-gray-700">Публичная речь</label>
-        <KInput
-          id="publicTalk"
-          name="publicTalk"
-          value={formData.publicTalk}
-          onChange={handleChange}
-          className="mt-1"
-        />
+        <KInput />
       </div>
 
       <div className="mb-4 grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="sbLeader" className="block text-sm font-medium text-gray-700">Ведущий С.Б.</label>
-          <KInput
-            id="sbLeader"
-            name="sbLeader"
-            value={formData.sbLeader}
-            onChange={handleChange}
-            className="mt-1"
-          />
+          <KInput />
         </div>
 
         <div>
           <label htmlFor="reader" className="block text-sm font-medium text-gray-700">Чтец</label>
-          <KInput
-            id="reader"
-            name="reader"
-            value={formData.reader}
-            onChange={handleChange}
-            className="mt-1"
-          />
+          <KInput />
         </div>
       </div>
 
       <div className="mb-4">
         <label htmlFor="closingPrayer" className="block text-sm font-medium text-gray-700">Заключительная молитва</label>
-        <KInput
-          id="closingPrayer"
-          name="closingPrayer"
-          value={formData.closingPrayer}
-          onChange={handleChange}
-          className="mt-1"
-        />
+        <KInput />
       </div>
 
       <div className="mb-6">
         <label htmlFor="wps" className="block text-sm font-medium text-gray-700">ВПС - зал + зум</label>
-        <KInput
-          id="wps"
-          name="wps"
-          value={formData.wps}
-          onChange={handleChange}
-          className="mt-1"
-        />
+        <KInput />
       </div>
 
       <button

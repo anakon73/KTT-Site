@@ -12,5 +12,7 @@ export default antfu(
 
     // or configure rules individually
     'readable-tailwind/multiline': ['warn', { printWidth: 100 }],
+    
   } },
+  
 )
