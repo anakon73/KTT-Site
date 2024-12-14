@@ -13,7 +13,7 @@ const keys = {
   ) => [{ entity, scope: Scopes.ById, ...params }],
 } as const
 
-export function useServicesOption() {
+export function useServicesQuery() {
   return queryOptions({
     queryKey: keys.getServices(),
     queryFn: getServices,
@@ -21,10 +21,10 @@ export function useServicesOption() {
 }
 
 export function useServices() {
-  return useQuery(useServicesOption())
+  return useQuery(useServicesQuery())
 }
 
-export function useServiceByIdOption(params: ServicesByIdParams) {
+export function useServiceByIdQuery(params: ServicesByIdParams) {
   return queryOptions({
     queryKey: keys.byId(params),
     queryFn: ({ queryKey: [{ id }] }) => getServiceById({ id: id! }),
@@ -32,5 +32,5 @@ export function useServiceByIdOption(params: ServicesByIdParams) {
 }
 
 export function useServiceById(params: ServicesByIdParams) {
-  return useQuery(useServiceByIdOption(params))
+  return useQuery(useServiceByIdQuery(params))
 }
