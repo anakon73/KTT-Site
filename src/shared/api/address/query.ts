@@ -1,5 +1,5 @@
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query'
-import { type AddressByIdParams, createAddress, getAddressById, getAddresses } from './api'
+import { type AddressByIdParams, createAddress, deleteAddress, getAddressById, getAddresses } from './api'
 
 const entity = 'address'
 const Scopes = { All: 'all', ById: 'by-id' } as const
@@ -37,6 +37,11 @@ export function useAddressById(params: AddressByIdParams) {
 export function useCreateAddress() {
   return useMutation({
     mutationFn: createAddress,
+  })
+}
 
+export function useDeleteAddress() {
+  return useMutation({
+    mutationFn: deleteAddress,
   })
 }

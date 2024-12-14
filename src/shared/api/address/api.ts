@@ -19,7 +19,10 @@ const endpoints = {
     method: 'post',
     schema: AddressSchema,
   },
-
+  delete: {
+    url: ({ id }: DeleteAddressParams) => `/api/addresses/${id}`,
+    method: 'delete',
+  },
 } satisfies ApiEndpointsAndSchemas
 
 export interface AddressByIdParams { id: number }
@@ -47,4 +50,11 @@ export async function createAddress({ address, address_url }: CreateAddressParam
   const { url, method, schema } = endpoints.create
   const data = await client[method](url, { address, address_url }, schema)
   return normalizeAddress(data)
+}
+
+export interface DeleteAddressParams { id: number }
+export async function deleteAddress({ id }: DeleteAddressParams) {
+  const { url, method } = endpoints.delete
+  await client[method](url({ id }))
+  return 'deleted'
 }
