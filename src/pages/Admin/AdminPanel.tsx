@@ -1,34 +1,36 @@
-import { keys, useAddresses, useCreateAddress } from '@/shared/api/address'
+import { AddressCreate } from '@/features/address/create'
+import { keys, useAddresses, useDeleteAddress } from '@/shared/api/address'
+import { cn } from '@/shared/lib/styles'
 import { DataPicker } from '@/shared/ui/data-picker'
 import { KInput } from '@/shared/ui/input'
 import { lightTheme, Provider } from '@adobe/react-spectrum'
-import { Button, Dialog, Flex, RadioCards, Text, TextField } from '@radix-ui/themes'
+import { Dialog, RadioCards } from '@radix-ui/themes'
 import { useQueryClient } from '@tanstack/react-query'
-import { Plus } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 import { useState } from 'react'
 
 export function AdminPanel() {
-  const [newAddress, setNewAddress] = useState('')
-  const [newAddressUrl, setNewAddressUrl] = useState('')
+  const { data } = useAddresses()
+  const { mutate } = useDeleteAddress()
 
-  const { mutate } = useCreateAddress()
+  const [addressId, setAddressId] = useState(0)
+
   const queryClient = useQueryClient()
 
-  const handleCreateAddress = () => {
-    mutate({
-      address: newAddress,
-      address_url: newAddressUrl,
-
-    }, { onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: keys.getAddresses() })
-    } })
+  const handleDeleteAddress = (id: number) => {
+    mutate(
+      { id },
+      {
+        onSettled: () => {
+          queryClient.invalidateQueries({ queryKey: keys.getAddresses() })
+        },
+      },
+    )
   }
-  const { data } = useAddresses()
-
   return (
     <div className="m-3 flex flex-col gap-y-6 rounded-lg bg-white p-6 pb-8 font-medium shadow-md">
       <Provider theme={lightTheme} colorScheme="light" UNSAFE_className="bg-white text-black">
-        {/* <DataPicker /> */}
+        <DataPicker />
       </Provider>
       <h1 className="mb-4 text-xl font-semibold text-gray-800">Редактирование Встречи</h1>
 
@@ -39,18 +41,30 @@ export function AdminPanel() {
 
       {data
       && (
-        <RadioCards.Root defaultValue="1" columns={{ initial: '1', sm: '5' }}>
-          { data.map(address => (
-            <RadioCards.Item value={address.id} key={address.id}>
-              <Flex direction="column" width="100%">
-                <Text weight="bold">{address.address}</Text>
-                <a
-                  href={address.addressUrl}
-                >
-                  Адресс
-                </a>
-              </Flex>
-            </RadioCards.Item>
+        <RadioCards.Root columns={{ initial: '1', sm: '5' }}>
+          {data.map(address => (
+            <button
+              onClick={() => setAddressId(address.id)}
+              className={cn(
+                'relative h-20 rounded-md border px-4 py-2 text-start',
+                addressId === address.id && `border-blue-500`,
+              )}
+              key={address.id}
+            >
+              <button
+                onClick={() => handleDeleteAddress(address.id)}
+                className="absolute right-1 top-1"
+              >
+                <X className="size-3" />
+              </button>
+              <p className="font-bold">{address.address}</p>
+              <a
+                href={address.addressUrl}
+                className="relative z-10 cursor-pointer"
+              >
+                Адресс
+              </a>
+            </button>
           ))}
           <Dialog.Root>
             <Dialog.Trigger>
@@ -59,43 +73,7 @@ export function AdminPanel() {
               </button>
             </Dialog.Trigger>
 
-            <Dialog.Content maxWidth="450px">
-              <Dialog.Title>Добавить адресс</Dialog.Title>
-
-              <Flex direction="column" gap="3">
-                <label>
-                  <Text as="div" size="2" mb="1" weight="bold">
-                    Место или город
-                  </Text>
-                  <TextField.Root
-                    value={newAddress}
-                    onChange={e => setNewAddress(e.target.value)}
-                    placeholder="Название места, города"
-                  />
-                </label>
-                <label>
-                  <Text as="div" size="2" mb="1" weight="bold">
-                    Ссылка
-                  </Text>
-                  <TextField.Root
-                    value={newAddressUrl}
-                    onChange={e => setNewAddressUrl(e.target.value)}
-                    placeholder="Вставь ссылку с карты"
-                  />
-                </label>
-              </Flex>
-
-              <Flex gap="3" mt="4" justify="end">
-                <Dialog.Close>
-                  <Button variant="soft" color="gray">
-                    Cancel
-                  </Button>
-                </Dialog.Close>
-                <Dialog.Close>
-                  <Button onClick={handleCreateAddress}>Создать</Button>
-                </Dialog.Close>
-              </Flex>
-            </Dialog.Content>
+            <AddressCreate />
           </Dialog.Root>
 
         </RadioCards.Root>
