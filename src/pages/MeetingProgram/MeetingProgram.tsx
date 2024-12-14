@@ -1,11 +1,25 @@
 import { useMeetings } from '@/shared/api/meetings/query'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useEffect } from 'react'
+import { useMemo, useState } from 'react'
 
 export function MeetingProgram() {
   const { data } = useMeetings()
 
-  useEffect(() => console.log(data), [data])
+  const [index, setIndex] = useState(0)
+
+  const currentProgram = useMemo(() => {
+    if (data)
+      return data[index]
+
+    return null
+  }, [data, index])
+
+  if (currentProgram === null) {
+    return (
+      <div>no service</div>
+    )
+  }
+
   return (
     <div className={`
       mx-3 my-1 flex flex-col gap-y-6 pb-8 font-medium
@@ -15,19 +29,40 @@ export function MeetingProgram() {
     >
       <div className="flex flex-col justify-center text-center">
         <div>
-          Встреча собрания
+          {currentProgram.status.title}
         </div>
         <div className="flex justify-center">
-          <button><ChevronLeft className="size-5" /></button>
-          {}
-          <p>19 Октября в 10:00 (Třinec)</p>
-          <button><ChevronRight className="size-5" /></button>
+          <button
+            disabled={index === 0}
+            onClick={() => setIndex(prev => prev - 1)}
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+          <p>
+            {
+              currentProgram.date.toLocaleString(
+                'ru',
+                { day: 'numeric', month: 'long' },
+              )
+            }
+            {' '}
+            в
+            {' '}
+            {`${currentProgram.date.getHours()}:${currentProgram.date.getMinutes().toString().padStart(2, '0')}`}
+            {' '}
+            (
+            {currentProgram.address.address}
+            )
+          </p>
+          <button disabled={index === data!.length - 1} onClick={() => setIndex(prev => prev + 1)}>
+            <ChevronRight className="size-5" />
+          </button>
         </div>
       </div>
 
       <div className="flex justify-between rounded-xl bg-white px-4 py-2 drop-shadow-mainshadow">
         <p>Председатель встречи</p>
-        <p className="font-semibold">Пляшко Богдан</p>
+        <p className="font-semibold">{currentProgram.leading}</p>
       </div>
 
       <div className={`
@@ -43,7 +78,7 @@ export function MeetingProgram() {
         `}
         >
           <p>Докладчик</p>
-          <p className="mt-2 font-semibold italic">Кошелев Владимир</p>
+          <p className="mt-2 font-semibold italic">{currentProgram.speaker}</p>
         </div>
         <div className={`
           rounded-xl px-4 py-2 drop-shadow-mainshadow
@@ -52,7 +87,7 @@ export function MeetingProgram() {
         `}
         >
           <p>Публичная речь:</p>
-          <p className="mt-2 font-bold text-slate-900">Долго ли еще стонать Человечеству?</p>
+          <p className="mt-2 font-bold text-slate-900">{currentProgram.speechTitle}</p>
         </div>
       </div>
 
@@ -62,27 +97,27 @@ export function MeetingProgram() {
       >
         <div>
           <p>Ведущий С.Б.</p>
-          <p className="font-semibold">Данов Александр</p>
+          <p className="font-semibold">{currentProgram.leadWt}</p>
         </div>
         <div>
           <p>Чтец</p>
-          <p className="font-semibold">Марк Гейда</p>
+          <p className="font-semibold">{currentProgram.reader}</p>
         </div>
       </div>
 
       <div className="flex justify-between rounded-xl bg-white px-4 py-2 drop-shadow-mainshadow">
         <p>Заключительная молитва</p>
-        <p className="font-semibold">Кошелев Владимир</p>
+        <p className="font-semibold">{currentProgram.closingPrayer}</p>
       </div>
 
       <div className="flex items-center justify-around rounded-xl px-4 py-2 text-center">
         <p>
           ВПС - зал + зум в
           <br />
-          11:50
+          {`${currentProgram.ministryMeeting.date.getHours()}:${currentProgram.ministryMeeting.date.getMinutes().toString().padStart(2, '0')}`}
         </p>
         <p>
-          Марк Гейда
+          {currentProgram.ministryMeeting.leader}
         </p>
       </div>
     </div>
