@@ -28,11 +28,13 @@ export function MinistryMeeting() {
 
           <div className="flex flex-col gap-y-3">
             {data && data.map(meeting => (
-              <div className={`
-                rounded-lg bg-white px-2 py-2 drop-shadow-md
+              <div
+                key={meeting.id}
+                className={`
+                  rounded-lg bg-white px-2 py-2 drop-shadow-md
 
-                sm:px-4 sm:py-3
-              `}
+                  sm:px-4 sm:py-3
+                `}
               >
                 <div
                   className={`

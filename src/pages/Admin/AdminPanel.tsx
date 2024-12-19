@@ -51,15 +51,22 @@ export function AdminPanel() {
               )}
               key={address.id}
             >
-              <button
-                onClick={() => handleDeleteAddress(address.id)}
-                className="absolute right-1 top-1"
+              <div
+                onClick={(e) => {
+                  e.stopPropagation() // Остановка всплытия, чтобы основной <button> не срабатывал
+                  handleDeleteAddress(address.id)
+                }}
+                className="absolute right-1 top-1 cursor-pointer"
+                role="button"
+                tabIndex={0}
               >
                 <X className="size-3" />
-              </button>
+              </div>
               <p className="font-bold">{address.address}</p>
               <a
                 href={address.addressUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="relative z-10 cursor-pointer"
               >
                 Адресс
@@ -72,10 +79,8 @@ export function AdminPanel() {
                 <Plus />
               </button>
             </Dialog.Trigger>
-
             <AddressCreate />
           </Dialog.Root>
-
         </RadioCards.Root>
       )}
 

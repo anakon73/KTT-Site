@@ -89,7 +89,7 @@ export function KDropdown() {
                       Войти
                     </div>
                   </DropdownMenu.Item>
-                  <Dialog.Content maxWidth="450px">
+                  <Dialog.Content maxWidth="450px" aria-describedby="">
                     <Dialog.Title className="font-medium">Вход в панель для редактирования</Dialog.Title>
                     <Flex direction="column" gap="3">
                       <label>

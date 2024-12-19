@@ -21,7 +21,7 @@ export function AddressCreate() {
   }
 
   return (
-    <Dialog.Content maxWidth="450px">
+    <Dialog.Content maxWidth="450px" aria-describedby="">
       <Dialog.Title>Добавить адресс</Dialog.Title>
 
       <Flex direction="column" gap="3">

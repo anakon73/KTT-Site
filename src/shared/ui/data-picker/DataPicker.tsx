@@ -7,6 +7,7 @@ export function DataPicker() {
   // console.log(value)
   return (
     <DatePicker
+      label="Выберите дату"
       value={value}
       onChange={() => setValue}
     />
