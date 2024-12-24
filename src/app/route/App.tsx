@@ -13,7 +13,7 @@ function App() {
       <Route path="/" element={<DefaultLayout />}>
         <Route index element={<MeetingProgram />} />
         <Route path="admin" element={<AdminPanel />} />
-        <Route path="admin/meeting" element={<AdminMeeting />} />
+        <Route path="admin/meeting/:date" element={<AdminMeeting />} />
         <Route path="admin/admin-ministry-meeting" element={<AdminMinistryMeetings />} />
         <Route path="meeting-service" element={<MeetingService />} />
         <Route path="areas" element={<Areas />} />
