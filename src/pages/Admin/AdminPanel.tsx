@@ -27,12 +27,51 @@ export function AdminPanel() {
       },
     )
   }
+
+  type MeetingType = 'Собрание' | 'Конгресс' | 'Спец программа' | 'Вечеря' | null
+
+  const [selectedType, setSelectedType] = useState<MeetingType>(null)
+
+  const handleSelectType = async (type: MeetingType) => {
+    setSelectedType(type)
+  }
   return (
     <div className="m-3 flex flex-col gap-y-6 rounded-lg bg-white p-6 pb-8 font-medium shadow-md">
       <Provider theme={lightTheme} colorScheme="light" UNSAFE_className="bg-white text-black">
         <DataPicker />
       </Provider>
-      <h1 className="mb-4 text-xl font-semibold text-gray-800">Редактирование Встречи</h1>
+      <h1 className="mb-2 text-xl font-semibold text-gray-800">Редактирование Встречи</h1>
+
+      <div className={`
+        flex flex-col gap-2
+
+        sm:flex-row sm:justify-between sm:gap-5
+      `}
+      >
+        {['Собрание', 'Конгресс', 'Спец программа', 'Вечеря'].map(type => (
+          <button
+            onClick={() => handleSelectType(type as MeetingType)}
+            className={cn(
+              `
+                relative rounded-md border px-4 py-2 text-start text-sm transition-all duration-200
+                ease-in-out
+
+                sm:w-full
+              `,
+              selectedType === type
+                ? `
+                  scale-100 border-blue-500 shadow-md
+
+                  sm:scale-105
+                `
+                : 'hover:shadow-sm',
+            )}
+            key={type}
+          >
+            <p className="font-bold">{type}</p>
+          </button>
+        ))}
+      </div>
 
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">Дата и время:</label>
@@ -46,8 +85,15 @@ export function AdminPanel() {
             <button
               onClick={() => setAddressId(address.id)}
               className={cn(
-                'relative h-20 rounded-md border px-4 py-2 text-start',
-                addressId === address.id && `border-blue-500`,
+                `
+                  relative h-20 rounded-md border px-4 py-2 text-start transition-all duration-200
+                  ease-in-out
+                `,
+                addressId === address.id && `
+                  border-blue-500 shadow-md
+
+                  sm:scale-105
+                `,
               )}
               key={address.id}
             >
@@ -120,14 +166,9 @@ export function AdminPanel() {
         <KInput />
       </div>
 
-      <div className="mb-6">
-        <label htmlFor="wps" className="block text-sm font-medium text-gray-700">ВПС - зал + зум</label>
-        <KInput />
-      </div>
-
       <button
         className={`
-          w-full rounded-2xl bg-blue-500 p-2 text-white
+          w-full rounded-2xl bg-blue-500 p-2 text-white transition-all duration-300 ease-in-out
 
           hover:bg-blue-600
         `}

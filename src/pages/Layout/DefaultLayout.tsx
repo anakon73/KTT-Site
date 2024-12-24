@@ -17,7 +17,7 @@ export function DefaultLayout() {
         <div className="flex w-full flex-col items-center justify-center gap-y-5">
           <Navbar />
           <div className={`
-            h-screen w-full max-w-[800px] overflow-hidden rounded-2xl bg-blue-200
+            min-h-screen w-full max-w-[800px] overflow-hidden rounded-2xl bg-blue-200
             drop-shadow-mainshadow
 
             sm:h-auto

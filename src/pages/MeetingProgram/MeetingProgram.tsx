@@ -33,6 +33,7 @@ export function MeetingProgram() {
         </div>
         <div className="flex justify-center">
           <button
+            className={index === 0 ? 'hidden' : 'block'}
             disabled={index === 0}
             onClick={() => setIndex(prev => prev - 1)}
           >
@@ -54,7 +55,7 @@ export function MeetingProgram() {
             {currentProgram.address.address}
             )
           </p>
-          <button disabled={index === data!.length - 1} onClick={() => setIndex(prev => prev + 1)}>
+          <button className={index === data!.length - 1 ? 'hidden' : 'block'} disabled={index === data!.length - 1} onClick={() => setIndex(prev => prev + 1)}>
             <ChevronRight className="size-5" />
           </button>
         </div>
