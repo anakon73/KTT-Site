@@ -1,11 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
+      colors: {
+        'dark-bg': '#1e293b', // Фон для темной темы
+        'dark-primary': '#253142', // Основной цвет для темной темы
+        'dark-text': '#f8fafc', // Текст для темной темы
+      },
       fontFamily: {
         montserrat: ['Montserrat'],
       },

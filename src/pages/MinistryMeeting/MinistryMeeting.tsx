@@ -6,7 +6,9 @@ export function MinistryMeeting() {
   return (
     <>
       <div className={`
-        mx-3 mt-1 pb-8 text-sm font-medium
+        mx-3 mt-1 pb-4 text-sm font-medium
+
+        dark:text-gray-200
 
         sm:mx-8 sm:my-5 sm:text-base
       `}
@@ -31,7 +33,10 @@ export function MinistryMeeting() {
               <div
                 key={meeting.id}
                 className={`
-                  rounded-lg bg-white px-2 py-2 drop-shadow-md
+                  rounded-lg bg-white px-2 py-2 drop-shadow-md transition-all duration-200
+                  ease-in-out
+
+                  dark:bg-dark-bg
 
                   sm:px-4 sm:py-3
                 `}
@@ -109,6 +114,9 @@ export function MinistryMeeting() {
 
                 <div className={`
                   mt-2 flex flex-col gap-2 rounded-xl bg-blue-200 px-3 py-2 drop-shadow-mainshadow
+                  transition-all duration-200 ease-in-out
+
+                  dark:bg-dark-primary
                 `}
                 >
                   <p className="text-center font-bold">Дружеская встреча</p>

@@ -3,7 +3,6 @@ import { keys, useAddresses, useDeleteAddress } from '@/shared/api/address'
 import { cn } from '@/shared/lib/styles'
 import { DataPicker } from '@/shared/ui/data-picker'
 import { KInput } from '@/shared/ui/input'
-import { lightTheme, Provider } from '@adobe/react-spectrum'
 import { Dialog, RadioCards } from '@radix-ui/themes'
 import { useQueryClient } from '@tanstack/react-query'
 import { Plus, X } from 'lucide-react'
@@ -36,11 +35,16 @@ export function AdminPanel() {
     setSelectedType(type)
   }
   return (
-    <div className="m-3 flex flex-col gap-y-6 rounded-lg bg-white p-6 pb-8 font-medium shadow-md">
-      <Provider theme={lightTheme} colorScheme="light" UNSAFE_className="bg-white text-black">
-        <DataPicker />
-      </Provider>
-      <h1 className="mb-2 text-xl font-semibold text-gray-800">Редактирование Встречи</h1>
+    <div className={`
+      m-3 flex flex-col gap-y-6 rounded-lg bg-white p-6 pb-8 font-medium shadow-md transition-all
+      duration-200 ease-in-out
+
+      dark:bg-dark-primary dark:text-gray-200
+    `}
+    >
+
+      <h1 className="mb-2 text-xl font-semibold">Редактирование Встречи</h1>
+      <DataPicker />
 
       <div className={`
         flex flex-col gap-2
@@ -56,11 +60,15 @@ export function AdminPanel() {
                 relative rounded-md border px-4 py-2 text-start text-sm transition-all duration-200
                 ease-in-out
 
+                dark:border-gray-600
+
                 sm:w-full
               `,
               selectedType === type
                 ? `
                   scale-100 border-blue-500 shadow-md
+
+                  dark:border-blue-500
 
                   sm:scale-105
                 `
@@ -74,8 +82,8 @@ export function AdminPanel() {
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Дата и время:</label>
-        <p className="mt-1 rounded-lg border border-gray-300 p-2 text-gray-600">19 Октября в 10:00 (Třinec)</p>
+        <label className="block text-sm font-medium">Дата и время:</label>
+        <p className="mt-1 rounded-lg border border-gray-300 p-2">19 Октября в 10:00 (Třinec)</p>
       </div>
 
       {data
@@ -88,9 +96,13 @@ export function AdminPanel() {
                 `
                   relative h-20 rounded-md border px-4 py-2 text-start transition-all duration-200
                   ease-in-out
+
+                  dark:border-gray-600
                 `,
                 addressId === address.id && `
                   border-blue-500 shadow-md
+
+                  dark:border-blue-500
 
                   sm:scale-105
                 `,
@@ -131,38 +143,38 @@ export function AdminPanel() {
       )}
 
       <div className="mb-4">
-        <label htmlFor="chairman" className="block text-sm font-medium text-gray-700">Место</label>
+        <label htmlFor="chairman" className="block text-sm font-medium">Место</label>
         <KInput />
       </div>
       <div className="mb-4">
-        <label htmlFor="chairman" className="block text-sm font-medium text-gray-700">Председатель встречи</label>
-        <KInput />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="speaker" className="block text-sm font-medium text-gray-700">Докладчик</label>
+        <label htmlFor="chairman" className="block text-sm font-medium">Председатель встречи</label>
         <KInput />
       </div>
 
       <div className="mb-4">
-        <label htmlFor="publicTalk" className="block text-sm font-medium text-gray-700">Публичная речь</label>
+        <label htmlFor="speaker" className="block text-sm font-medium">Докладчик</label>
+        <KInput />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="publicTalk" className="block text-sm font-medium">Публичная речь</label>
         <KInput />
       </div>
 
       <div className="mb-4 grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="sbLeader" className="block text-sm font-medium text-gray-700">Ведущий С.Б.</label>
+          <label htmlFor="sbLeader" className="block text-sm font-medium">Ведущий С.Б.</label>
           <KInput />
         </div>
 
         <div>
-          <label htmlFor="reader" className="block text-sm font-medium text-gray-700">Чтец</label>
+          <label htmlFor="reader" className="block text-sm font-medium">Чтец</label>
           <KInput />
         </div>
       </div>
 
       <div className="mb-4">
-        <label htmlFor="closingPrayer" className="block text-sm font-medium text-gray-700">Заключительная молитва</label>
+        <label htmlFor="closingPrayer" className="block text-sm font-medium">Заключительная молитва</label>
         <KInput />
       </div>
 
