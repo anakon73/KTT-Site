@@ -1,11 +1,13 @@
 import { Button, Dialog, DropdownMenu, Flex } from '@radix-ui/themes'
 import { Menu, User } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { KInput } from '../input'
 import { ADMIN_PASSWORD } from '../Navbar'
 
 export function KDropdown() {
+  const navigate = useNavigate()
+
   const ref = useRef<HTMLButtonElement>(null)
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -55,7 +57,7 @@ export function KDropdown() {
             ? (
                 <div>
                   <DropdownMenu.Item>
-                    <Link to="admin">
+                    <Link to="admin" onClick={() => setIsMenuOpen(false)}>
                       Редактировать встречи
                     </Link>
                   </DropdownMenu.Item>
@@ -65,6 +67,7 @@ export function KDropdown() {
                       onClick={(e) => {
                         e.preventDefault()
                         handleLogOff()
+                        navigate('/')
                       }}
                       className="w-full"
                     >

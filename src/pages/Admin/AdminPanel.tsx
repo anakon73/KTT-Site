@@ -1,5 +1,6 @@
 import { AddressCreate } from '@/features/address/create'
 import { keys, useAddresses, useDeleteAddress } from '@/shared/api/address'
+import { useAuthRedirect } from '@/shared/auth/auth'
 import { cn } from '@/shared/lib/styles'
 import { DataPicker } from '@/shared/ui/data-picker'
 import { KInput } from '@/shared/ui/input'
@@ -9,6 +10,8 @@ import { Plus, X } from 'lucide-react'
 import { useState } from 'react'
 
 export function AdminPanel() {
+  useAuthRedirect()
+
   const { data } = useAddresses()
   const { mutate } = useDeleteAddress()
 
