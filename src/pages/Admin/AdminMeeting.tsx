@@ -1,36 +1,21 @@
 import { AddressCreate } from '@/features/address/create'
-import { keys, useAddresses, useDeleteAddress } from '@/shared/api/address'
+import { useAddresses, useDeleteAddress } from '@/shared/api/address'
 import { useAuthRedirect } from '@/shared/auth/auth'
 import { cn } from '@/shared/lib/styles'
-import { DataPicker } from '@/shared/ui/data-picker'
-import { KInput } from '@/shared/ui/input'
-import { Dialog, RadioCards } from '@radix-ui/themes'
-import { useQueryClient } from '@tanstack/react-query'
+import { DataPicker } from '@/shared/ui/DataPicker'
+import { KInput } from '@/shared/ui/KInput'
+import { Dialog, RadioCards, Separator } from '@radix-ui/themes'
 import { Plus, X } from 'lucide-react'
 import { useState } from 'react'
 
 type MeetingType = 'Собрание' | 'Конгресс' | 'Спец. программа' | 'Вечеря' | null
 
 export function AdminMeeting() {
-  useAuthRedirect()
 
   const { data } = useAddresses()
   const { mutate } = useDeleteAddress()
 
   const [addressId, setAddressId] = useState(0)
-
-  const queryClient = useQueryClient()
-
-  const handleDeleteAddress = (id: number) => {
-    mutate(
-      { id },
-      {
-        onSettled: () => {
-          queryClient.invalidateQueries({ queryKey: keys.getAddresses() })
-        },
-      },
-    )
-  }
 
   const [selectedType, setSelectedType] = useState<MeetingType>(null)
   const [timeInput, setTimeInput] = useState('10:00')
@@ -43,14 +28,17 @@ export function AdminMeeting() {
       m-3 flex flex-col gap-y-4 rounded-lg bg-white p-6 pb-8 text-sm font-medium shadow-md
       transition-all duration-200 ease-in-out
 
-      dark:text-gray-200 dark:shadow-none dark:bg-dark-primary
+      dark:bg-dark-primary dark:text-gray-200 dark:shadow-none
 
       sm:gap-y-6 sm:text-base
     `}
     >
       <h1 className="mb-2 text-xl font-semibold">Редактирование Встречи</h1>
       <div className="flex justify-between gap-10">
-        <DataPicker />
+        <div>
+          <p className="mb-1">Дата:</p>
+          <DataPicker />
+        </div>
         <div className="flex flex-col">
           <label htmlFor="timeInput">Время:</label>
           <input
@@ -73,18 +61,14 @@ export function AdminMeeting() {
         <div className="mb-2">
           Тип встречи:
         </div>
-        <div className={`
-          flex flex-col gap-2
+        <RadioCards.Root columns={{ initial: '2', sm: '4' }}>
 
-          sm:flex-row sm:justify-between sm:gap-5
-        `}
-        >
           {['Собрание', 'Конгресс', 'Спец. программа', 'Вечеря'].map(type => (
             <button
               onClick={() => handleSelectType(type as MeetingType)}
               className={cn(
                 `
-                  relative rounded-md border px-4 py-2 text-start transition-all duration-200
+                  relative h-16 rounded-md border px-4 py-2 text-start transition-all duration-200
                   ease-in-out
 
                   dark:border-gray-600
@@ -106,7 +90,7 @@ export function AdminMeeting() {
               <p className="font-bold">{type}</p>
             </button>
           ))}
-        </div>
+        </RadioCards.Root>
       </div>
 
       {data
@@ -115,7 +99,7 @@ export function AdminMeeting() {
           <div className="mb-2">
             Адресс:
           </div>
-          <RadioCards.Root columns={{ initial: '1', sm: '4' }}>
+          <RadioCards.Root columns={{ initial: '2', sm: '4' }}>
             {data.map(address => (
               <button
                 onClick={() => setAddressId(address.id)}
@@ -139,7 +123,7 @@ export function AdminMeeting() {
                 <div
                   onClick={(e) => {
                     e.stopPropagation()
-                    handleDeleteAddress(address.id)
+                    mutate({ id: address.id })
                   }}
                   className="absolute right-1 top-1 cursor-pointer"
                   role="button"
@@ -161,7 +145,7 @@ export function AdminMeeting() {
             <Dialog.Root>
               <Dialog.Trigger>
                 <button className={`
-                  flex size-full items-center justify-center rounded-md border
+                  flex size-full items-center justify-center rounded-md border py-4
 
                   dark:border-gray-600
                 `}
@@ -175,40 +159,47 @@ export function AdminMeeting() {
         </div>
       )}
 
-      <div>
-        <label htmlFor="chairman" className="block font-medium">Председатель встречи</label>
-        <KInput />
+      <KInput label="Председатель встречи:" />
+
+      <div className={`
+        grid-cols-2 gap-4
+
+        sm:grid
+      `}
+      >
+        <KInput label="Докладчик:" />
+        <KInput label="Публичная речь:" />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="speaker" className="block font-medium">Докладчик</label>
-          <KInput />
-        </div>
+      <div className={`
+        grid-cols-2 gap-4
 
-        <div>
-          <label htmlFor="publicTalk" className="block font-medium">Публичная речь</label>
-          <KInput />
-        </div>
+        sm:grid
+      `}
+      >
+        <KInput label="Ведущий С.Б.:" />
+
+        <KInput label="Чтец:" />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="sbLeader" className="block font-medium">Ведущий С.Б.</label>
-          <KInput />
-        </div>
+      <KInput label="Заключительная молитва:" />
 
-        <div>
-          <label htmlFor="reader" className="block font-medium">Чтец</label>
-          <KInput />
-        </div>
-      </div>
+      <button
+        className={`
+          w-full rounded-2xl bg-blue-800 p-2 text-white transition-all duration-300 ease-in-out
 
-      <div>
-        <label htmlFor="closingPrayer" className="block font-medium">Заключительная молитва</label>
-        <KInput />
-      </div>
+          hover:bg-blue-600
+        `}
+      >
+        Сохранить изменения
+      </button>
+      <Separator className="h-0.5 w-full" />
+      <h1 className="mb-2 text-xl font-semibold">Редактирование Обслуживающих</h1>
 
+      <KInput label="Сцена:" />
+      <KInput label="Микрофоны:" />
+      <KInput label="Аппаратура:" />
+      <KInput label="Распорямдители:" />
       <button
         className={`
           w-full rounded-2xl bg-blue-800 p-2 text-white transition-all duration-300 ease-in-out

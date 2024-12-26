@@ -1,8 +1,9 @@
 import { dateValidation } from '@/shared/lib/validation'
 import { z } from 'zod'
-import { AddressSchema } from '../address'
+import { addressSchema } from '../address'
+import { ministryMeetingSchema } from '../ministry-meeting'
 
-export const MeetingSchema = z.object({
+export const meetingSchema = z.object({
   id: z.number(),
   date: dateValidation,
   leading: z.string(),
@@ -12,14 +13,10 @@ export const MeetingSchema = z.object({
   reader: z.string().nullable(),
   closing_prayer: z.string(),
   special_program: z.string().nullable(),
-  address: AddressSchema,
+  address: addressSchema.nullable(),
   status: z.object({
     id: z.number(),
     title: z.string(),
   }),
-  ministry_meeting: z.object({
-    id: z.number(),
-    date: dateValidation,
-    leader: z.string(),
-  }),
+  ministry_meeting: ministryMeetingSchema.nullable(),
 })

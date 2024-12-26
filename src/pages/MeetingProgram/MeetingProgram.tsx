@@ -1,4 +1,5 @@
 import { useMeetings } from '@/shared/api/meetings/query'
+import { Separator } from '@radix-ui/themes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
@@ -120,7 +121,7 @@ export function MeetingProgram() {
           className={`
             rounded-xl px-4 py-2 drop-shadow-mainshadow
 
-            dark:drop-shadow-none dark:bg-dark-bg dark:md:bg-dark-bg
+            dark:bg-dark-bg dark:drop-shadow-none dark:md:bg-dark-bg
 
             md:bg-white
           `}
@@ -175,23 +176,104 @@ export function MeetingProgram() {
         <p>Заключительная молитва</p>
         <p className="font-semibold">{currentProgram.closingPrayer}</p>
       </div>
+      {currentProgram.ministryMeeting && (
+        <div
+          className={`
+            rounded-lg bg-white px-2 py-2 drop-shadow-md transition-all duration-200 ease-in-out
 
-      <div className={`
-        flex items-center justify-around rounded-xl px-4 py-2 text-center
+            dark:bg-dark-bg
 
-        dark:bg-gray-800
-      `}
-      >
-        <p>
-          ВПС - зал + зум в
-          <br />
-          {`${currentProgram.ministryMeeting.date.getHours()}:${currentProgram.ministryMeeting.date
-            .getMinutes()
-            .toString()
-            .padStart(2, '0')}`}
-        </p>
-        <p>{currentProgram.ministryMeeting.leader}</p>
-      </div>
+            sm:px-4 sm:py-3
+          `}
+        >
+          <p className="mb-2 text-center">Встреча Проповеднического Служения</p>
+          <div
+            className="flex justify-around"
+          >
+
+            <div className="sm:col-auto">
+              <p className={`
+                text-sm font-semibold text-gray-500
+
+                sm:hidden
+              `}
+              >
+                Время
+              </p>
+              <p>
+                {`${currentProgram.ministryMeeting.date.getHours()}:${currentProgram.ministryMeeting.date.getMinutes().toString().padStart(2, '0')}`}
+              </p>
+            </div>
+
+            <div className="sm:col-span-2">
+              <p className={`
+                text-sm font-semibold text-gray-500
+
+                sm:hidden
+              `}
+              >
+                Ведущий
+              </p>
+              <p>{currentProgram.ministryMeeting.leader}</p>
+            </div>
+          </div>
+          {currentProgram.ministryMeeting.friendlyMeeting && (
+            <>
+
+              <Separator className="my-5 w-full" />
+              <div className={`
+                mt-2 flex flex-col gap-2 rounded-xl bg-blue-200 px-3 py-2 drop-shadow-mainshadow
+
+                dark:bg-dark-primary
+              `}
+              >
+
+                <p className="text-center font-bold">Дружеская встреча</p>
+                <p>
+                  {currentProgram.ministryMeeting.friendlyMeeting.description}
+                </p>
+                <div className={`
+                  flex max-w-[500px] flex-col justify-between gap-2
+
+                  sm:flex-row
+                `}
+                >
+                  <div className={`
+                    flex max-w-[350px] gap-4
+
+                    sm:block
+                  `}
+                  >
+                    <p className="font-bold">
+                      Место
+                    </p>
+                    <a
+                      target="_blank"
+                      href={currentProgram.ministryMeeting.friendlyMeeting.addressUrl}
+                      className="text-blue-600 underline"
+                    >
+                      {currentProgram.ministryMeeting.friendlyMeeting.address}
+                    </a>
+                  </div>
+                  <div className={`
+                    flex gap-4
+
+                    sm:block
+                  `}
+                  >
+                    <p className="font-bold">
+                      Время
+                    </p>
+                    <p>
+                      {`${currentProgram.ministryMeeting.friendlyMeeting.date.getHours()}:${currentProgram.ministryMeeting.friendlyMeeting.date.getMinutes().toString().padStart(2, '0')}`}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   )
 }

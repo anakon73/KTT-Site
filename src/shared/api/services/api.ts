@@ -9,7 +9,7 @@ const endpoints = {
     method: 'get',
     schema: z.array(ServicesSchema),
   },
-  byId: {
+  g: {
     url: ({ id }: ServicesByIdParams) => `/api/${id}`,
     method: 'get',
     schema: ServicesSchema,

@@ -1,0 +1,1 @@
+export { KMinistryItem } from './KMinistryItem'

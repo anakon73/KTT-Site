@@ -1,4 +1,4 @@
-import { useServices } from '@/shared/api/services'
+import { useServices } from '@/shared/api/service'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
@@ -37,7 +37,9 @@ export function MeetingService() {
           <button
             disabled={index === 0}
             onClick={() => setIndex(prev => prev - 1)}
-            className="disabled:opacity-50"
+            className={`
+              ${index === 0 ? 'hidden' : 'block'}
+            `}
           >
             <ChevronLeft className={`
               size-5 text-gray-700
@@ -56,7 +58,9 @@ export function MeetingService() {
           <button
             disabled={index === data!.length - 1}
             onClick={() => setIndex(prev => prev + 1)}
-            className="disabled:opacity-50"
+            className={`
+              ${index === data!.length - 1 ? 'hidden' : 'block'}
+            `}
           >
             <ChevronRight className={`
               size-5 text-gray-700
