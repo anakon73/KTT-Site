@@ -2,7 +2,7 @@ import { Button, Dialog, DropdownMenu, Flex } from '@radix-ui/themes'
 import { Menu, User } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { KInput } from '../input'
+import { KInput } from '../KInput'
 import { ADMIN_PASSWORD } from '../Navbar'
 
 export function KDropdown() {

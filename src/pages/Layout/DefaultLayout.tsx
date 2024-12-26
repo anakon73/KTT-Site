@@ -20,7 +20,12 @@ export function DefaultLayout() {
         sm:my-10
       `}
       >
-        <div className="flex w-full flex-col items-center justify-center gap-y-5">
+        <div className={`
+          flex w-full flex-col items-center justify-center gap-y-5 px-1
+
+          md:px-0
+        `}
+        >
           <Navbar />
           <div className={`
             min-h-screen w-full max-w-[800px] overflow-hidden rounded-2xl bg-blue-200

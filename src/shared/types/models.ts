@@ -5,33 +5,11 @@ export interface Address {
 }
 export interface Services {
   id: number
-  scene: string
   date: Date
-  microphones: string
-  voiceoverZoom: string
-  administrator: string
-}
-
-export interface Meetings {
-  id: number
-  date: Date
-  leading: string
-  speaker: string | null
-  speechTitle: string | null
-  leadWt: string | null
-  reader: string | null
-  closingPrayer: string
-  specialProgram: string | null
-  address: Address
-  status: {
-    id: number
-    title: string
-  }
-  ministryMeeting: {
-    id: number
-    date: Date
-    leader: string
-  }
+  scene: string | null
+  microphones: string | null
+  voiceoverZoom: string | null
+  administrator: string | null
 }
 
 export interface FriendlyMeeting {
@@ -46,7 +24,33 @@ export interface FriendlyMeeting {
 export interface MinistryMeeting {
   id: number
   date: Date
-  leader: string
+  leader: string | null
+  address: string | null
+  addressUrl: string | null
+  friendlyMeeting: FriendlyMeeting | null
+}
+
+export interface MeetingStatus {
+  id: number
+  title: string
+}
+
+export interface Meeting {
+  id: number
+  date: Date
+  leading: string
+  speaker: string | null
+  speechTitle: string | null
+  leadWt: string | null
+  reader: string | null
+  closingPrayer: string
+  specialProgram: string | null
   address: Address
-  friendlyMeeting: FriendlyMeeting
+  status: MeetingStatus
+  ministryMeeting: MinistryMeeting
+}
+
+export interface DataResponse<T> {
+  message: string
+  data?: T
 }

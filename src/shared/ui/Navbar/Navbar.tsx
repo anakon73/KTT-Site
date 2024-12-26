@@ -1,6 +1,6 @@
-import { ThemeSwitcher } from '@/features/theme-switcher'
+import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher'
 import { NavLink } from 'react-router-dom'
-import { KDropdown } from '../dialog'
+import { KDropdown } from '../KDropdown'
 import { links } from './config'
 import '@radix-ui/themes/styles.css'
 
@@ -31,7 +31,7 @@ export function Navbar() {
                 w-full rounded-md border bg-white p-2 text-center text-sm transition-all
                 duration-200 ease-in-out
 
-                dark:bg-dark-primary dark:border-gray-700
+                dark:border-gray-700 dark:bg-dark-primary
               `}
             to={link.path}
           >
