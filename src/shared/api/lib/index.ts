@@ -1,5 +1,8 @@
 import type { z } from 'zod'
+import { QueryClient } from '@tanstack/react-query'
 import { RestClient } from './RestClient'
+
+export const queryClient = new QueryClient()
 
 export const client = new RestClient()
 

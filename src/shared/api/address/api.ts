@@ -1,23 +1,23 @@
 import { z } from 'zod'
 import { type ApiEndpointsAndSchemas, client } from '../lib'
 import { normalizeAddress } from './normalizers'
-import { AddressSchema } from './types'
+import { addressSchema } from './types'
 
 const endpoints = {
   getAddress: {
     url: '/api/addresses',
     method: 'get',
-    schema: z.array(AddressSchema),
+    schema: z.array(addressSchema),
   },
   byId: {
     url: ({ id }: AddressByIdParams) => `/api/${id}`,
     method: 'get',
-    schema: AddressSchema,
+    schema: addressSchema,
   },
   create: {
     url: '/api/addresses',
     method: 'post',
-    schema: AddressSchema,
+    schema: addressSchema,
   },
   delete: {
     url: ({ id }: DeleteAddressParams) => `/api/addresses/${id}`,

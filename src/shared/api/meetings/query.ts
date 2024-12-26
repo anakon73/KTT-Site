@@ -1,14 +1,15 @@
-import { queryOptions, useQuery } from '@tanstack/react-query'
-import { getMeetingById, getMeetings, type MeetingsByIdParams } from './api'
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query'
+import { queryClient } from '../lib'
+import { createMeeting, deleteMeeting, getMeeting, type GetMeetingParams, getMeetings, updateMeeting } from './api'
 
-const entity = 'meetings'
+const entity = 'meeting'
 const Scopes = { All: 'all', ById: 'by-id' } as const
 
 const keys = {
   getMeetings: (
   ) => [{ entity, scope: Scopes.All }],
-  byId: (
-    params: MeetingsByIdParams,
+  getMeeting: (
+    params: GetMeetingParams,
   ) => [{ entity, scope: Scopes.ById, ...params }],
 } as const
 
@@ -23,13 +24,34 @@ export function useMeetings() {
   return useQuery(useMeetingsQuery())
 }
 
-export function useMeetingByIdQuery(params: MeetingsByIdParams) {
+export function useMeetingByIdQuery(params: GetMeetingParams) {
   return queryOptions({
-    queryKey: keys.byId(params),
-    queryFn: ({ queryKey: [{ id }] }) => getMeetingById({ id: id! }),
+    queryKey: keys.getMeeting(params),
+    queryFn: ({ queryKey: [{ id }] }) => getMeeting({ id: id! }),
   })
 }
 
-export function useMeetingById(params: MeetingsByIdParams) {
+export function useMeetingById(params: GetMeetingParams) {
   return useQuery(useMeetingByIdQuery(params))
+}
+
+export function useCreateMeeting() {
+  return useMutation({
+    mutationFn: createMeeting,
+  })
+}
+
+export function useUpdateMeeting() {
+  return useMutation({
+    mutationFn: updateMeeting,
+  })
+}
+
+export function useDeleteMeeting() {
+  return useMutation({
+    mutationFn: deleteMeeting,
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: keys.getMeetings() })
+    },
+  })
 }

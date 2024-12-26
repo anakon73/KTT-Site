@@ -1,32 +1,33 @@
-import type { CalendarDate } from '@internationalized/date'
+import type { DateValue } from 'react-aria-components'
 import { useCurrentTheme } from '@/shared/lib/utils'
 import { darkTheme, DatePicker, lightTheme, Provider } from '@adobe/react-spectrum'
-import { parseDate } from '@internationalized/date'
-import React from 'react'
+import { forwardRef } from 'react'
 
-export function DataPicker() {
-  const [value, setValue] = React.useState(() => parseDate(new Date().toISOString().split('T')[0]))
+export interface Props {
+  value: DateValue | undefined
+  onChange: (value: DateValue | null) => void
+}
 
-  const handleDateChange = (click: CalendarDate | null) => {
-    if (click) {
-      setValue(click)
-    }
-  }
-
+export const DataPicker = forwardRef<HTMLDivElement, Props>((
+  { onChange, value }: Props,
+  ref,
+) => {
   const isDarkMode = useCurrentTheme()
 
   return (
     <Provider
+      // @ts-expect-error types error
+      ref={ref}
       theme={isDarkMode ? darkTheme : lightTheme}
       colorScheme="light"
       UNSAFE_className="dark:bg-dark-primary"
     >
       <DatePicker
-        label="Выберите дату"
         value={value}
-        onChange={handleDateChange}
+        aria-label="Select a date"
+        onChange={onChange}
         UNSAFE_className="bg-white dark:bg-dark-primary text-black dark:text-white "
       />
     </Provider>
   )
-};
+})

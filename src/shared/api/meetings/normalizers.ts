@@ -1,12 +1,13 @@
-import type { Meetings } from '@/shared/types'
+import type { Meeting } from '@/shared/types'
 import type { z } from 'zod'
-import type { MeetingSchema } from './types'
+import type { meetingSchema } from './types'
 import { objectPick } from '@antfu/utils'
-import { normalizeAddress } from '../address/normalizers'
+import { normalizeAddress } from '../address'
+import { normalizeMinistryMeeting } from '../ministry-meeting'
 
 export function normalizeMeeting(
-  meeting: z.infer<typeof MeetingSchema>,
-): Meetings {
+  meeting: z.infer<typeof meetingSchema>,
+): Meeting {
   const {
     address,
     closing_prayer,
@@ -21,11 +22,11 @@ export function normalizeMeeting(
       meeting,
       ['id', 'leading', 'reader', 'speaker', 'date', 'status'],
     ),
-    ministryMeeting: ministry_meeting,
+    ministryMeeting: normalizeMinistryMeeting(ministry_meeting),
+    address: normalizeAddress(address),
     closingPrayer: closing_prayer,
     leadWt: lead_wt,
     specialProgram: special_program,
     speechTitle: speech_title,
-    address: normalizeAddress(address),
   }
 }

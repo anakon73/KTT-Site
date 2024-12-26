@@ -1,10 +1,10 @@
 import type { Services } from '@/shared/types'
 import type { z } from 'zod'
-import type { ServicesSchema } from './types'
+import type { servicesSchema } from './types'
 import { objectPick } from '@antfu/utils'
 
-export function normalizeServices(
-  services: z.infer<typeof ServicesSchema>,
+export function normalizeService(
+  services: z.infer<typeof servicesSchema>,
 ): Services {
   return {
     ...objectPick(services, ['id', 'administrator', 'microphones', 'scene', 'date']),
