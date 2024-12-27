@@ -23,7 +23,7 @@ export function MeetingEdit() {
 
   const { data: addresses } = useAddresses()
   const { mutate: deleteAddress } = useDeleteAddress()
-  const { mutate: updateMeeting } = useUpdateMeeting()
+  const { mutate: updateMeeting, data: response } = useUpdateMeeting()
   const { mutate: updateService } = useUpdateService()
 
   const {
@@ -453,6 +453,7 @@ export function MeetingEdit() {
       >
         Сохранить изменения
       </button>
+      {response && <p>{response.message}</p>}
     </form>
   )
 }

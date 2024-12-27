@@ -17,7 +17,7 @@ import { meetingSchema, type MeetingSchemaValues } from './lib'
 export function MeetingCreate() {
   const { data: addresses } = useAddresses()
   const { mutate: deleteAddress } = useDeleteAddress()
-  const { mutate: createMeeting } = useCreateMeeting()
+  const { mutate: createMeeting, data: response } = useCreateMeeting()
   const { mutate: createService } = useCreateService()
 
   const {
@@ -412,6 +412,7 @@ export function MeetingCreate() {
       >
         Сохранить изменения
       </button>
+      {response && <p>{response.message}</p>}
     </form>
   )
 }
