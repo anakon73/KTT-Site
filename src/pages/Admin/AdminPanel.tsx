@@ -1,6 +1,7 @@
 import { useDeleteFriendlyMeeting } from '@/shared/api/friendly-meeting'
 import { useDeleteMeeting, useMeetings } from '@/shared/api/meetings'
 import { useDeleteMinistryMeeting, useMinistryMeetings } from '@/shared/api/ministry-meeting'
+import { useDeleteService } from '@/shared/api/service'
 import { cn } from '@/shared/lib/styles'
 import { RadioCards, Separator } from '@radix-ui/themes'
 import { Plus, X } from 'lucide-react'
@@ -10,6 +11,7 @@ export function AdminPanel() {
   const { data: meetingData, isLoading } = useMeetings()
   const { data: ministryData } = useMinistryMeetings()
   const { mutate: deleteMeeting } = useDeleteMeeting()
+  const { mutate: deleteService } = useDeleteService()
   const { mutate: deleteMinistryMeeting } = useDeleteMinistryMeeting()
   const { mutate: deleteFriendly } = useDeleteFriendlyMeeting()
 
@@ -45,6 +47,7 @@ export function AdminPanel() {
             <button
               onClick={(e) => {
                 e.stopPropagation()
+                deleteService({ id: meeting.serviceId! })
                 deleteMeeting({ id: meeting.id })
               }}
               className="absolute right-1 top-1 cursor-pointer"
@@ -53,7 +56,7 @@ export function AdminPanel() {
             >
               <X className="size-3" />
             </button>
-            <p className={meeting.status.title !== 'Собрание' ? 'font-bold' : undefined}>{meeting.status.title}</p>
+            <p className={meeting.status!.title !== 'Собрание' ? 'font-bold' : undefined}>{meeting.status!.title}</p>
             <p className="text-xs">
               {meeting.date.toLocaleString('ru', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
@@ -80,7 +83,6 @@ export function AdminPanel() {
         Встречи для проповеди:
       </p>
       <RadioCards.Root columns={{ initial: '2', sm: '3' }}>
-
         {ministryData?.map(meeting => (
           <button
             onClick={() => navigate(`ministry-meeting/${meeting.id}`)}
